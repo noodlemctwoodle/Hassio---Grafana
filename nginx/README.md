@@ -1,6 +1,12 @@
 # Install NGINX and Configure Lets Encrypt
 
-Be aware that **{config-name}** used in this guide should be replaced by the NGINX configuration you are using such as 'hassio' or 'containers'
+
+## Requirements
+!! Port '80' and Port '443' are forwarded on you firewall to the IP address of you NGINX host !!
+
+
+### Guide Variables Used
+- **{config-name}** used in this guide should be replaced by the NGINX configuration you are using such as 'hassio' or 'containers'
 
 
 ### Install NGINX 
