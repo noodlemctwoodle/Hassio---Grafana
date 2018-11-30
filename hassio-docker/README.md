@@ -1,5 +1,5 @@
 # Install Hass.io
-This guide explains how to install hassio on Ubuntu Server 18.04 running Docker CEmage.
+This guide explains how to install hassio on Ubuntu Server 18.04 running Docker CE
 
 ### Requirements
 - docker-ce
