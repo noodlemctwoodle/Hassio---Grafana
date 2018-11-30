@@ -1,6 +1,6 @@
 # Install NGINX and Configure Lets Encrypt
 
-Be aware that **{config-name}** ussed in this guide should be replaced by the NGINX configuration you are using such as 'hassio' or 'containers'
+Be aware that **{config-name}** used in this guide should be replaced by the NGINX configuration you are using such as 'hassio' or 'containers'
 
 
 ### Install NGINX 
