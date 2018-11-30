@@ -50,7 +50,9 @@ Create a proxy file for NGINX
 sudo nano /etc/nginx/sites-available/{config-name}
 ```
 ### Edit the NGINX proxy file
-Copy [HassioContainers](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/config/HassioContainers) into the config file and replace details below to reflect your netowrk configuration. You can comment out or remove any 'proxy_pass' script blocks you are not going to use
+- If you are setting up NGINX for [HassioContainers](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/config/HassioContainers) copy this config file and replace the details to reflect your netowrk configuration. You can comment out or remove any 'proxy_pass' script blocks you are not going to use
+- If you are setting up NGINX for [Hassio](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/hassio-docker/config/hassio) reverse proxy copy this config file and replace the details to reflect your netowrk configuration.
+
 
 Here are some of the examples you will need to change
 
