@@ -46,14 +46,14 @@ Create a proxy file for NGINX
 sudo nano /etc/nginx/sites-available/HassioContainers
 ```
 ### Edit the NGINX proxy file
-Copy [HassioContainers](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/HassioContainers) into the config file and replace the IP addresses relevant to your netowrk configuration
+Copy [HassioContainers](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/config/HassioContainers) into the config file and replace the IP addresses relevant to your netowrk configuration
 
 ### Edit NGINX Config
 ```
 sudo nano /etc/nginx/nginx.conf
 ```
 ### Edit the NGINX configuration file
-Copy the configuration from [nginx.conf](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/nginx.conf) into the config file replacing all config
+Copy the configuration from [nginx.conf](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/config/nginx.conf) into the config file replacing all config
 
 ### Set proxy File to enabled 
 ```
