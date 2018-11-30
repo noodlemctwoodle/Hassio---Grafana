@@ -2,17 +2,22 @@
 This guide explains how to install hassio on Ubuntu Server 18.04 running Docker CEmage.
 
 ### Requirements
-docker-ce
-bash
-jq
-curl
-avahi-daemon
-dbus
-Optional
-apparmor-utils
-network-manager
-Run
-Run as root (sudo su):
+- docker-ce
+- bash
+- jq
+- curl
+- avahi-daemon
+- dbus
+- Optional
+- apparmor-utils
+- network-manager
+- Run
+- Run as root (sudo su):
+
+You may need to install the Universe repo for some of the requirements 
+```
+sudo add-apt-repository universe
+```
 
 ### Supported Machine types
 Intel-NUC
