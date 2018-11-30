@@ -1,0 +1,78 @@
+server {
+    listen                    80;
+    listen                    [::]:80;
+    server_name               subdomain.domain.com; # 
+    return                    301 https://$server_name$request_uri;
+}
+
+server {
+    listen                    443 ssl http2;
+    listen                    [::]:443 ssl http2;
+    server_name               subdomain.domain.com;
+
+    ssl_certificate           /etc/letsencrypt/live/subdomain.domain.com/fullchain.pem;
+    ssl_certificate_key       /etc/letsencrypt/live/subdomain.domain.com/privkey.pem;
+    ssl_trusted_certificate   /etc/letsencrypt/live/subdomain.domain.com/chain.pem;
+    ssl_dhparam               /etc/ssl/certs/dhparam.pem;
+
+    ssl_protocols             TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers               'kEECDH+ECDSA+AES128 kEECDH+ECDSA+AES256 kEECDH+AES128 kEECDH+AES256 kEDH+AES128 kEDH+AES256 DES-CBC3-SHA +SHA !aNULL !eNULL !LOW !kECDH !DSS !MD$
+    ssl_ecdh_curve            secp384r1;
+    ssl_session_cache         shared:SSL:1m;
+    ssl_session_timeout       1440m;
+    ssl_stapling              on;
+    ssl_stapling_verify       on;
+    ssl_buffer_size           8k;
+    add_header                Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+
+    location ^~ /nzbhydra {
+        proxy_pass            http://192.168.0.10:5076/nzbhydra;
+                include               proxy_params;
+    }
+
+    location ^~ /nzbget {
+        proxy_pass            http://192.168.0.10:6789;
+                include               proxy_params;
+        client_max_body_size  50m;
+    }
+
+    location ^~ /sonarr {
+        proxy_pass            http://192.168.0.10:8989/sonarr;
+                include               proxy_params;
+    }
+
+    location ^~ /radarr {
+        proxy_pass            http://192.168.0.10:7878/radarr;
+    }
+
+    location ^~ /lidarr {
+        proxy_pass            http://192.168.0.10:8686/lidarr;
+                include               proxy_params;
+    }
+
+    location ^~ /tautulli {
+        proxy_pass            http://192.168.0.10:8181/tautulli;
+                include               proxy_params;
+    }
+
+    location ^~ /jackett {
+        proxy_pass            http://192.168.0.10:9117/jackett;
+                include               proxy_params;
+    }
+
+    location ^~ /deluge {
+        proxy_pass            http://192.168.0.10:8112/deluge;
+                include               proxy_params;
+    }
+
+    location /grafana/ {
+        proxy_pass            http://192.168.0.13:3000/;
+    }
+
+    location ^~ /.well-known/acme-challenge/ {
+        default_type          "text/plain";
+                allow                 all;
+    }
+}
