@@ -19,18 +19,18 @@ Once downloaded, you will need to get your certificate, run the following comman
 ```
 ./letsencrypt-auto certonly --standalone
 ```
-Once letsencrypt-auto has completed it will display the location of the newly created .pem files. 
+Once letsencrypt-auto has completed it will display the location of the newly created .pem files. Make a note of this location as you will need it later for the proxy configuration
 
 Example: 
 
 ```
-/etc/letsencrypt/live/YOUR_DOMAIN/subdomain.domain.com
+/etc/letsencrypt/live/YOUR_DOMAIN/hassio.mysmarthome.co.uk
 ```
 ### Configure NGINX
 
 Change the permissions on the YOUR_DOMAIN folder and it's content by default they can't only be accessed by root
 ```	
-sudo chmod -R 744 /etc/letsencrypt/live/phlex.cleverhomes.io/
+sudo chmod -R 744 /etc/letsencrypt/live/hassio.mysmarthome.co.uk/
 ```
 
 ### Generate strong Diffie Hellman Ephemeral parameter
@@ -46,7 +46,56 @@ Create a proxy file for NGINX
 sudo nano /etc/nginx/sites-available/HassioContainers
 ```
 ### Edit the NGINX proxy file
-Copy [HassioContainers](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/config/HassioContainers) into the config file and replace the IP addresses relevant to your netowrk configuration
+Copy [HassioContainers](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/config/HassioContainers) into the config file and replace details below to reflect your netowrk configuration. You can comment out or remove any 'proxy_pass' script blocks you are not going to use
+
+Here are some of the examples you will need to change
+
+
+Change Domain Name Example:
+
+```
+server {
+    listen                    80;
+    listen                    [::]:80;
+    server_name               hassio.mysmarthome.co.uk; # Change the domain name here
+    return                    301 https://$server_name$request_uri;
+}
+
+server {
+    listen                    443 ssl http2;
+    listen                    [::]:443 ssl http2;
+    server_name               hassio.mysmarthome.co.uk; # Change the domain name here
+```
+
+Change the certificate example:
+
+```
+    ssl_certificate           /etc/letsencrypt/live/hassio.mysmarthome.co.uk/fullchain.pem;
+    ssl_certificate_key       /etc/letsencrypt/live/hassio.mysmarthome.co.uk/privkey.pem;
+    ssl_trusted_certificate   /etc/letsencrypt/live/hassio.mysmarthome.co.uk/chain.pem;
+```
+
+
+
+
+Change IP Detials Example:
+
+```
+    location ^~ /tautulli {
+        proxy_pass            http://10.20.30.199:8181/tautulli;
+                include               proxy_params;
+    }
+```
+Comment Out Example:
+
+```
+#    location ^~ /tautulli {
+#        proxy_pass            http://192.168.0.10:8181/tautulli;
+#                include               proxy_params;
+#    }
+```
+
+
 
 ### Edit NGINX Config
 ```
