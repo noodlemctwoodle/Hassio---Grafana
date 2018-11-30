@@ -63,7 +63,10 @@ homeassistant/qemux86-64-homeassistant
 homeassistant/amd64-hassio-supervisor
 ```
 
+## Configure Hass.io for remote access using NGINX reverse proxy
+Using the [NGINX Guide](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/README.md) create a new certificate for your Hass.io instance. If you have already installed NGINX and Lets Encrypt start from the section 'Create Certificate/s' and generate a new certificate for this Hass.io instance and complete the rest of the guide. 
 
+Be aware that {config-name} should be replaced by the NGINX configuration you are using such as 'hassio' or 'containers'
 
 
 

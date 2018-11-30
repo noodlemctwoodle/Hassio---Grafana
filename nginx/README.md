@@ -1,5 +1,7 @@
 # Install NGINX and Configure Lets Encrypt
 
+Be aware that {config-name} ussed in this guide should be replaced by the NGINX configuration you are using such as 'hassio' or 'containers'
+
 
 ### Install NGINX 
 ```bash
@@ -15,6 +17,8 @@ git clone https://github.com/letsencrypt/letsencrypt
 cd letsencrypt/
 ./letsencrypt-auto --server \ https://acme-v01.api.letsencrypt.org/directory --help
 ```
+
+### Create Certificate/s
 Once downloaded, you will need to get your certificate, run the following command and follow the on screen prompts
 ```
 ./letsencrypt-auto certonly --standalone
@@ -43,7 +47,7 @@ sudo openssl dhparam -out dhparam.pem 4096
 ## NGINX config
 Create a proxy file for NGINX
 ```
-sudo nano /etc/nginx/sites-available/HassioContainers
+sudo nano /etc/nginx/sites-available/{config-name}
 ```
 ### Edit the NGINX proxy file
 Copy [HassioContainers](https://github.com/noodlemctwoodle/Hassio-Containers/blob/master/nginx/config/HassioContainers) into the config file and replace details below to reflect your netowrk configuration. You can comment out or remove any 'proxy_pass' script blocks you are not going to use
@@ -106,7 +110,7 @@ Copy the configuration from [nginx.conf](https://github.com/noodlemctwoodle/Hass
 
 ### Set proxy File to enabled 
 ```
-sudo ln -s /etc/nginx/sites-available/HassioContainers /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/{config-name}/etc/nginx/sites-enabled/
 ```
 
 ### Start the NGINX service
@@ -120,5 +124,5 @@ sudo systemctl start nginx.service
 
 ### Remove Default config from enabled sites
 ```
-sudo rm /etc/nginx/sites-enabled/HassioContainters
+sudo rm /etc/nginx/sites-enabled/{config-name}
 ```
