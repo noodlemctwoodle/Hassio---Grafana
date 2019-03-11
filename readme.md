@@ -1,3 +1,3 @@
-# Home Asssistant - Containers
+# Home Asssistant - Wiki Configuration Container
 
-Project container for [Hassio Wiki](https://github.com/noodlemctwoodle/hassio/wiki)
+Wiki Configuration Container for [Hassio Wiki](https://github.com/noodlemctwoodle/hassio/wiki)
