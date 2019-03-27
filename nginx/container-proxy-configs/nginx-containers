@@ -17,7 +17,7 @@ server {
 
     ssl_protocols             TLSv1.1 TLSv1.2;
     ssl_prefer_server_ciphers on;
-    ssl_ciphers               'kEECDH+ECDSA+AES128 kEECDH+ECDSA+AES256 kEECDH+AES128 kEECDH+AES256 kEDH+AES128 kEDH+AES256 DES-CBC3-SHA +SHA !aNULL !eNULL !LOW !kECDH !DSS !MD$
+    ssl_ciphers               kEECDH+ECDSA+AES128 kEECDH+ECDSA+AES256 kEECDH+AES128 kEECDH+AES256 kEDH+AES128 kEDH+AES256 DES-CBC3-SHA +SHA !aNULL !eNULL !LOW !kECDH !DSS !MD$
     ssl_ecdh_curve            secp384r1;
     ssl_session_cache         shared:SSL:1m;
     ssl_session_timeout       1440m;
